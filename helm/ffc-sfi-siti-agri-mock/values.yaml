@@ -12,6 +12,10 @@ appInsights:
 containerConfigMap:
   name: ffc-sfi-siti-agri-mock-config-map
 
+containerSecret:
+  name: ffc-sfi-siti-agri-mock-container-secret
+  type: Opaque
+
 deployment:
   restartPolicy: Always
   priorityClassName: default
