@@ -7,4 +7,6 @@ services:
       target: production
     image: ffc-sfi-siti-agri-mock
     container_name: ffc-sfi-siti-agri-mock
-    environment: {}
+    environment:
+      APPINSIGHTS_CLOUDROLE: ffc-demo-payment-service-local
+      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
