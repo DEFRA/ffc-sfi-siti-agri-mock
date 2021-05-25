@@ -1,0 +1,3 @@
+{{- include "ffc-helm-library.cluster-ip-service" (list . "ffc-sfi-siti-agri-mock.cluster-ip-service") -}}
+{{- define "ffc-sfi-siti-agri-mock.cluster-ip-service" -}}
+{{- end -}}
