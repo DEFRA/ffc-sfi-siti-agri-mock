@@ -2,6 +2,23 @@
 
 Mock service to support testing of Siti agri integration.
 
+## Prerequisites
+- Docker
+- Docker Compose
+
+### Optional
+- Kubernetes
+- Helm
+
+## Running the application
+
+```
+docker-compose build
+docker-compose up
+```
+
+The application will be available at `http://localhost:3002`.
+
 ## Available endpoints
 
 ### `/check-eligibility` (POST)
