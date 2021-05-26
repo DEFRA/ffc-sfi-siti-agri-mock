@@ -6,8 +6,15 @@ image: ffc-sfi-siti-agri-mock
 
 labels: {}
 
+appInsights:
+  key:
+
 containerConfigMap:
   name: ffc-sfi-siti-agri-mock-config-map
+
+containerSecret:
+  name: ffc-sfi-siti-agri-mock-container-secret
+  type: Opaque
 
 deployment:
   restartPolicy: Always
@@ -21,18 +28,19 @@ container:
   requestCpu: 10m
   limitMemory: 40Mi
   limitCpu: 40m
-  port: 3000
+  port: 3002
+  delayInSeconds: 0
 
 livenessProbe:
   path: /healthz
-  port: 3000
+  port: 3002
   initialDelaySeconds: 10
   periodSeconds: 10
   failureThreshold: 3
 
 readinessProbe:
   path: /healthy
-  port: 3000
+  port: 3002
   initialDelaySeconds: 10
   periodSeconds: 10
   failureThreshold: 3

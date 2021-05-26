@@ -2,6 +2,95 @@
 
 Mock service to support testing of Siti agri integration.
 
+## Prerequisites
+- Docker
+- Docker Compose
+
+### Optional
+- Kubernetes
+- Helm
+
+## Running the application
+
+```
+docker-compose build
+docker-compose up
+```
+
+The application will be available at `http://localhost:3002`.
+
+## Available endpoints
+
+### `/check-eligibility` (POST)
+
+Check user is eligible to apply.
+
+Example response:
+
+```
+{
+  sbi: 123456789,
+  isEligible: true
+}
+```
+
+### `/standards` (GET)
+
+Return list of available standards.
+
+Example response:
+
+```
+{
+  sbi: 123456789,
+  standards: [
+    {
+      id: 1,
+      name: 'Standard name'
+    }
+  ]
+}
+```
+
+### `/validate` (POST)
+
+Validate parcel and standard combination.
+
+Example response:
+
+```
+{
+  sbi: 123456789,
+  isValid: true
+}
+```
+
+### `/calculate` (POST)
+
+Calculate payment amount for parcel and standard combination.
+
+Example response:
+
+```
+{
+  sbi: 123456789,
+  paymentAmount: 10000
+}
+```
+
+### `/submit` (POST)
+
+Submit agreement.
+
+Example response:
+
+```
+{
+  sbi: 123456789,
+  submitted: true
+}
+```
+
 ## Licence
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:
