@@ -26,4 +26,8 @@ if (result.error) {
 
 const value = result.value
 
+// Add some helper props
+value.isDev = value.env === 'development'
+value.isProd = value.env === 'production'
+
 module.exports = value
