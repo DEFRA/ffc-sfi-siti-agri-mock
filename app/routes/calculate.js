@@ -6,6 +6,7 @@ module.exports = [{
   options: {
     handler: async (request, h) => {
       await delay()
+      console.info('Agreement calculated')
       return h.response({
         sbi: request.payload?.sbi,
         paymentAmount: 616800
