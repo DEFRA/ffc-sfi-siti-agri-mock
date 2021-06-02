@@ -5,7 +5,8 @@ const routes = [].concat(
   require('../routes/standards'),
   require('../routes/validate'),
   require('../routes/calculate'),
-  require('../routes/submit')
+  require('../routes/submit'),
+  require('../routes/withdraw')
 )
 
 module.exports = {
