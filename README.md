@@ -12,10 +12,75 @@ Mock service to support testing of Siti agri integration.
 
 ## Running the application
 
+The application is designed to run in containerised environments, using Docker Compose in development and Kubernetes in production.
+
+- A Helm chart is provided for production deployments to Kubernetes.
+
+### Build container image
+
+Container images are built using Docker Compose, with the same images used to run the service with either Docker Compose or Kubernetes.
+
+When using the Docker Compose files in development the local `app` folder will
+be mounted on top of the `app` folder within the Docker container, hiding the CSS files that were generated during the Docker build.  For the site to render correctly locally `npm run build` must be run on the host system.
+
+
+By default, the start script will build (or rebuild) images so there will
+rarely be a need to build images manually. However, this can be achieved
+through the Docker Compose
+[build](https://docs.docker.com/compose/reference/build/) command:
+
 ```
+# Build container images
 docker-compose build
-docker-compose up
 ```
+
+### Start
+
+Use Docker Compose to run service locally.
+
+The service uses [Liquibase](https://www.liquibase.org/) to manage database migrations. To ensure the appropriate migrations have been run the utility script `scripts/start` may be run to execute the migrations, then the application.
+
+Alternatively the steps can be run manually:
+* run migrations
+  * `docker-compose -f docker-compose.migrate.yaml run --rm database-up`
+* start
+  * `docker-compose up`
+* stop
+  * `docker-compose down` or CTRL-C
+
+Additional Docker Compose files are provided for scenarios such as linking to other running services.
+
+Link to other services:
+```
+docker-compose -f docker-compose.yaml -f docker-compose.link.yaml up
+```
+
+## Test structure
+
+The tests have been structured into subfolders of `./test` as per the
+[Microservice test approach and repository structure](https://eaflood.atlassian.net/wiki/spaces/FPS/pages/1845396477/Microservice+test+approach+and+repository+structure)
+
+### Running tests
+
+A convenience script is provided to run automated tests in a containerised
+environment. This will rebuild images before running tests via docker-compose,
+using a combination of `docker-compose.yaml` and `docker-compose.test.yaml`.
+The command given to `docker-compose run` may be customised by passing
+arguments to the test script.
+
+Examples:
+
+```
+# Run all tests
+scripts/test
+
+# Run tests with file watch
+scripts/test -w
+```
+
+## CI pipeline
+
+This service uses the [FFC CI pipeline](https://github.com/DEFRA/ffc-jenkins-pipeline-library)
 
 The application will be available at `http://localhost:3002`.
 
