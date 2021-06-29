@@ -9,7 +9,9 @@ module.exports = [{
       console.info('Agreement validated')
       return h.response({
         sbi: request.payload?.sbi,
-        isValid: true
+        agreementNumber: request.payload?.agreementNumber,
+        isValid: true,
+        errors: []
       })
     }
   }
