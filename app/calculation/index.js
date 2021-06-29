@@ -1,8 +1,9 @@
 const buildResponse = (calculationPayload) => {
-  calculate(calculationPayload, 'soilProtection', 6)
-  calculate(calculationPayload, 'permanentGrasslandProtection', 6)
-  calculate(calculationPayload, 'moorlandGrazing', 6)
-  calculate(calculationPayload, 'livestockWelfare', 6)
+  const rate = 6
+  calculate(calculationPayload, 'soilProtection', rate)
+  calculate(calculationPayload, 'permanentGrasslandProtection', rate)
+  calculate(calculationPayload, 'moorlandGrazing', rate)
+  calculate(calculationPayload, 'livestockWelfare', rate)
   return calculationPayload
 }
 
