@@ -7,7 +7,7 @@ module.exports = [{
   options: {
     handler: async (request, h) => {
       await delay()
-      console.info('Agreement calculated', request)
+      console.info('Agreement calculated', request.payload)
       const calculationPayload = buildResponse(request.payload)
       calculationPayload.correlationId = ''
       console.log(JSON.stringify(calculationPayload))
