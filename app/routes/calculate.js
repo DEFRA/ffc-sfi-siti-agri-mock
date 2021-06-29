@@ -1,4 +1,5 @@
 const delay = require('../delay')
+const buildResponse = require('../calculation')
 
 module.exports = [{
   method: 'POST',
@@ -6,7 +7,11 @@ module.exports = [{
   options: {
     handler: async (request, h) => {
       await delay()
-      console.info('Agreement calculated')
+      console.info('Agreement calculated', request)
+      const calculationPayload = buildResponse(request.payload)
+      calculationPayload.correlationId = ''
+      console.log(JSON.stringify(calculationPayload))
+
       return h.response({
         sbi: request.payload?.sbi,
         paymentAmount: 616800
