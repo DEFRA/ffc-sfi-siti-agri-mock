@@ -6,7 +6,8 @@ const routes = [].concat(
   require('../routes/validate'),
   require('../routes/calculate'),
   require('../routes/submit'),
-  require('../routes/withdraw')
+  require('../routes/withdraw'),
+  require('../routes/request-sbi')
 )
 
 module.exports = {
